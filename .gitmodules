@@ -1,0 +1,3 @@
+[submodule "natsboard/natsboard"]
+	path = natsboard/natsboard
+	url = https://github.com/chrkaatz/natsboard.git

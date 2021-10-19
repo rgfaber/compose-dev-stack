@@ -1,0 +1,148 @@
+version: '3.5'
+
+services:
+
+
+  couch:
+    image: couchdb
+    hostname: couch
+    container_name: couch
+    networks:
+      - dev-net
+  
+  
+  eventstore:
+    # image: eventstore/eventstore:release-5.0.8
+    image: eventstore/eventstore:latest
+    hostname: eventstore
+    container_name: eventstore
+    networks:
+      - dev-net
+      
+  nats:
+    image: local/nats
+    build:
+      context: ./backend/nats
+    hostname: nats
+    container_name: nats
+    networks:
+      - dev-net
+      - monitor-net
+
+
+  es01:
+    image: local/elastic
+    build:
+      context: ./backend/elastic
+    container_name: es01
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - elastic
+    
+  es02:
+    image: local/elastic
+    build:
+      context: ./backend/elastic
+    container_name: es02
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - elastic
+    
+  es03:
+    image: local/elastic
+    build:
+      context: ./backend/elastic
+    container_name: es03
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - elastic
+    
+  kib01:
+    image: local/kibana
+    build: 
+      context: ./backend/kibana
+    container_name: kib01
+    # env_file: 
+    #   - ./kibana/.env
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'      
+    networks:
+      - elastic
+    
+  
+
+  # natsboard:
+  #   image: local/natsboard
+  #   build:
+  #     context: ./natsboard/natsboard
+  #   hostname: natsboard
+  #   container_name: natsboard
+  #   networks:
+  #     - dev-net
+  #     - monitor-net
+
+  # surveyor:
+  #   image: synadia/nats-surveyor:${SURVEYOR_DOCKER_TAG}
+  #   container_name: nats-surveyor
+  #   restart: always
+  #   volumes:
+  #     - $NATS_SURVEYOR_CREDS:/etc/surveyor/SYS.creds
+  #     - ./observations:/observations
+  #     - ./jetstream:/jetstream
+  #   entrypoint: /nats-surveyor
+  #   command: -c ${NATS_SURVEYOR_SERVER_COUNT} -creds /etc/surveyor/SYS.creds -s "${NATS_SURVEYOR_SERVERS}" -observe /observations
+  #   networks:
+  #     - monitor-net
+  #   labels:
+  #     org.label-schema.group: "nats-monitoring"
+
+  # prometheus:
+  #   image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
+  #   container_name: prometheus
+  #   restart: always
+  #   volumes:
+  #     - ./prometheus/:/etc/prometheus/
+  #     - $PROMETHEUS_STORAGE:/usr/local/share/prometheus
+  #   command: --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/usr/local/share/prometheus
+  #   networks:
+  #     - monitor-net
+  #   labels:
+  #     org.label-schema.group: "nats-monitoring"
+  #   depends_on:
+  #     - surveyor
+
+  # grafana:
+  #   image: grafana/grafana:${GRAFANA_DOCKER_TAG}
+  #   container_name: grafana
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./grafana/dashboards:/var/lib/grafana/dashboards
+  #     - ./grafana/provisioning:/etc/grafana/provisioning
+  #   networks:
+  #     - monitor-net
+  #   labels:
+  #     org.label-schema.group: "nats-monitoring"
+  #   depends_on:
+  #     - prometheus      
+
+networks:
+  dev-net:
+    driver: bridge
+  monitor-net:
+    driver: bridge
+  elastic:
+      driver: bridge    

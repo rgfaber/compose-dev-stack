@@ -1,0 +1,10 @@
+version: '3.5'
+
+networks:
+  dev-net:
+    name: dev-net
+    driver: bridge
+  # monitor-net:
+  #   driver: bridge
+  # elastic:
+  #     driver: bridge    
