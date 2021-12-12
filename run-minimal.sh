@@ -35,6 +35,9 @@ sudo mkdir -p /volume/elastic/data03
 # NATS
 sudo mkdir -p /volume/nats/stream01
 
+# POSTGRESQL
+sudo mkdir -p /volume/postgres/data
+
 sudo chown $USER -R /volume/
 # sudo chown 1001 -R /volume/mongodb  # https://hub.docker.com/_/mongo
 
@@ -46,6 +49,7 @@ docker-compose -f couchdb.yml \
                -f eventstore.yml \
                -f redis.yml \
                -f rabbitmq.yml \
+               -f postgresql.yml \
                -f networks.yml \
                down
 
@@ -54,6 +58,7 @@ docker-compose -f couchdb.yml \
                -f eventstore.yml \
                -f redis.yml \
                -f rabbitmq.yml \
+               -f postgresql.yml \
                -f networks.yml \
                up --build $1 
 
