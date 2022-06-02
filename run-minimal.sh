@@ -42,6 +42,13 @@ sudo mkdir -p /volume/postgres/data
 sudo mkdir -p /volume/spacedeck/storage
 sudo mkdir -p /volume/spacedeck/db
 
+# KAFKA
+sudo mkdir -p /volume/kafka/data
+
+# COCKROACHDB
+sudo mkdir -p /volume/crdb/data
+
+
 
 
 
@@ -58,7 +65,8 @@ docker-compose -f couchdb.yml \
                -f rabbitmq.yml \
                -f postgresql.yml \
                -f mongodb.yml \
-               -f spacedeck.yml \
+               -f kafka.yml \
+               -f cockroachdb.yml \
                -f networks.yml \
                down
 
@@ -69,7 +77,8 @@ docker-compose -f couchdb.yml \
                -f rabbitmq.yml \
                -f postgresql.yml \
                -f mongodb.yml \
-               -f spacedeck.yml \
+               -f kafka.yml \
+               -f cockroachdb.yml \
                -f networks.yml \
                up --build $1 
 

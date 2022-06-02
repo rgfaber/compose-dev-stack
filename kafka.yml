@@ -1,0 +1,41 @@
+version: '3.5'
+services:
+  zookeeper:
+    image: local/zookeeper
+    build:
+      context: ./backend/zookeeper
+    hostname: zookeeper
+    container_name: zookeeper
+    networks:
+      - dev-net
+    env_file:
+      - ./backend/zookeeper/.env
+
+  kafka:
+    image: local/kafka
+    container_name: kafka-dev
+    build:
+      context: ./backend/kafka      
+    hostname: kafka
+    networks:
+      - dev-net
+    ports:
+    # To learn about configuring Kafka for access across networks see
+    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    env_file:
+      - ./backend/kafka/.env
+
+
+volumes:
+
+  kafka-data:
+    driver: local
+    driver_opts: 
+      type: none
+      device: /volume/kafka/data
+      o: bind
