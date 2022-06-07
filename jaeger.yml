@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+
+  jaeger:
+    image: local/jaeger
+    container_name: jaeger
+    hostname: jaeger
+    build:
+      context: ./backend/jaeger
+    ports:
+      - "6831:6831"
+      - "16686:16686"
+    env_file:
+      - ./backend/jaeger/.env
+

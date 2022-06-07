@@ -58,29 +58,18 @@ sudo chown $USER -R /volume/
 
 git submodule update --remote
 
-docker-compose -f couchdb.yml \
-               -f nats-streaming.yml \
-               -f eventstore.yml \
+docker-compose -f eventstore.yml \
                -f redis.yml \
-               -f rabbitmq.yml \
-               -f postgresql.yml \
-               -f mongodb.yml \
                -f kafka.yml \
                -f cockroachdb.yml \
-               -f jaeger.yml \
                -f networks.yml \
                down
 
-docker-compose -f couchdb.yml \
-               -f nats-streaming.yml \
-               -f eventstore.yml \
+docker-compose -f eventstore.yml \
                -f redis.yml \
-               -f rabbitmq.yml \
-               -f postgresql.yml \
-               -f mongodb.yml \
                -f kafka.yml \
                -f cockroachdb.yml \
-               -f jaeger.yml \
                -f networks.yml \
                up --build $1 
+
 
