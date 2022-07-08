@@ -4,6 +4,5 @@ echo '-----------------------------------'
 echo pushing version "$1" to main branch
 echo '-----------------------------------'
 git add .
-git commit -m "$1" -a
+git commit -a -m "$1"
 git push
-git checkout develop
