@@ -1,6 +1,5 @@
-# FROM eventstore/eventstore:20.10.4-buster-slim
-FROM eventstore/eventstore:21.2.0-bionic
-# FROM eventstore/eventstore:latest
+FROM eventstore/eventstore:21.10.5-buster-slim
+# FROM eventstore/eventstore:21.2.0-bionic
 
 # USER root
 
