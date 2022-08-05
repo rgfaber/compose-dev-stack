@@ -7,17 +7,15 @@ services:
     build:
       context: ./backend/nats
     hostname: nats
-    container_name: nats
+    container_name: core-nats
     networks:
       - dev-net
     ports:
       - "4222:4222"
       - "6222:6222"
       - "8222:8222"
-    environment: 
-      NATS_CLUSTER: default
-      NATS_CLIENT: default
-      NATS_SERVER: nats://nats:4222
+    env_file:
+      - ./backend/nats/.env
 
 
 

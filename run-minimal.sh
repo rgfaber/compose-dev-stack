@@ -73,7 +73,7 @@ docker-compose -f couchdb.yml \
                down
 
 docker-compose -f couchdb.yml \
-               -f nats-streaming.yml \
+               -f nats.yml \
                -f eventstore.yml \
                -f redis.yml \
                -f rabbitmq.yml \
