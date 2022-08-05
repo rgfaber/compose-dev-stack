@@ -10,7 +10,6 @@ services:
     container_name: nats
     networks:
       - dev-net
-      - monitor-net
     ports:
       - "4222:4222"
       - "6222:6222"
@@ -22,8 +21,6 @@ services:
 
 
 
-   
-  
 
   # natsboard:
   #   image: local/natsboard
