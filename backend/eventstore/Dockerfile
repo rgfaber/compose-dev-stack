@@ -1,4 +1,4 @@
-FROM eventstore/eventstore:21.10.5-buster-slim
+FROM eventstore/eventstore:21.10.7-buster-slim
 # FROM eventstore/eventstore:21.2.0-bionic
 
 # USER root

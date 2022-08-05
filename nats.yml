@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
 
-  nats:
+  core-nats:
     image: local/nats
     build:
       context: ./backend/nats
