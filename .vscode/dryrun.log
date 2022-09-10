@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/rl/work/github.com/rgfaber/compose-dev-stack'
-make: Leaving directory '/home/rl/work/github.com/rgfaber/compose-dev-stack'
- 
-make: *** No targets specified and no makefile found.  Stop.
-
