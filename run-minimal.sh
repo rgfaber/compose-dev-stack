@@ -59,6 +59,7 @@ sudo chown $USER -R /volume/
 git submodule update --remote
 
 docker-compose -f couchdb.yml \
+               -f postgresql.yml \
                -f nats.yml \
                -f eventstore.yml \
                -f kafka.yml \
@@ -69,6 +70,7 @@ docker-compose -f couchdb.yml \
                down
 
 docker-compose -f couchdb.yml \
+               -f postgresql.yml \
                -f nats.yml \
                -f eventstore.yml \
                -f redis.yml \

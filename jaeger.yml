@@ -6,6 +6,8 @@ services:
     image: local/jaeger
     container_name: jaeger
     hostname: jaeger
+    networks:
+      - dev-net
     build:
       context: ./backend/jaeger
     ports:
