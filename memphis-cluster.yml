@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+
+  memphis-cluster:
+    image: local/memphis-broker
+    build:
+      context: ./backend/memphis-broker/
+    env_file:
+      - ./backend/memphis-broker/.env
+    container_name: memphis-cluster
+    healthcheck:
+      test: wget http://memphis-cluster:9000 --spider || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: on-failure
+    pull_policy: always
+    networks:
+      - dev-net
+    ports:
+      - "9000:9000"
+      - "6666:6666"
+      - "7770:7770"
+      - "8222:8222"
+    command: >
+      --jetstream --auth=memphis  --websocket_no_tls=true -m 8222
+
+        
