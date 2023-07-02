@@ -1,0 +1,15 @@
+version : '3.5'
+
+services:
+
+  postgres:
+    image: local/plant-uml
+    build:
+      context: ./backend/plant-uml
+    container_name: plant-uml
+    env_file:
+      - ./backend/plant-uml/.env
+    networks:
+      - dev-net
+    ports:
+      - "8080:8080"

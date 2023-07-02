@@ -4,6 +4,9 @@
 ## CLEAR ALL DATA
 sudo rm -rf /volume
 
+# WIRESHARK
+sudo mkdir -p /volume/wireshark/config
+
 # FREEIPA
 sudo mkdir -p /volume/freeipa/data
 
@@ -49,9 +52,6 @@ sudo mkdir -p /volume/kafka/data
 sudo mkdir -p /volume/crdb/data
 
 
-
-
-
 sudo chown $USER -R /volume/
 # sudo chown 1001 -R /volume/mongodb  # https://hub.docker.com/_/mongo
 
@@ -64,6 +64,8 @@ docker-compose -f couchdb.yml \
                -f redis.yml \
                -f rabbitmq.yml \
                -f jaeger.yml \
+               -f postgres.yml \
+               -f wireshark.yml \
                -f networks.yml \
                down
 
@@ -73,6 +75,8 @@ docker-compose -f couchdb.yml \
                -f redis.yml \
                -f rabbitmq.yml \
                -f jaeger.yml \
+               -f postgres.yml \
+               -f wireshark.yml \
                -f networks.yml \
                up --build $1 
 
