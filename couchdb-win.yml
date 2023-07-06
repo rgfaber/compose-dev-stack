@@ -14,29 +14,29 @@ services:
       - dev-net
     ports:
       - "5984:5984"
-    volumes:
-      - couch-data:/opt/couchdb/data
-      - couch-log:/opt/couchdb/log
-      # - couch-config:/opt/couchdb/etc/local.d
+#     volumes:
+#       - couch-data:/opt/couchdb/data
+#       - couch-log:/opt/couchdb/log
+#       - couch-config:/opt/couchdb/etc/local.d
   
-volumes:
-  couch-data:
-    driver: local
-    driver_opts: 
-      type: none
-      device: /c/volume/couchdb/data
-      o: bind
+# volumes:
+#   couch-data:
+#     driver: local
+#     driver_opts: 
+#       type: none
+#       device: /c/volume/couchdb/data
+#       o: bind
 
-  couch-log:
-    driver: local
-    driver_opts: 
-      type: none
-      device: /c/volume/couchdb/log
-      o: bind
+#   couch-log:
+#     driver: local
+#     driver_opts: 
+#       type: none
+#       device: /c/volume/couchdb/log
+#       o: bind
 
-  # couch-config:
-  #   driver: local
-  #   driver_opts: 
-  #     type: none
-  #     device: /c/volume/couchdb/config
-  #     o: bind
+#   couch-config:
+#     driver: local
+#     driver_opts: 
+#       type: none
+#       device: /c/volume/couchdb/config
+#       o: bind
