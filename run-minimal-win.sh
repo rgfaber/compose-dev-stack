@@ -52,7 +52,7 @@ mkdir -p /c/volume/wireshark/config
  mkdir -p /c/volume/crdb/data
 
 
- chown $USER -R /c/volume/
+#  chown $USER -R /c/volume/
 #  chown 1001 -R /c/volume/mongodb  # https://hub.docker.com/_/mongo
 
 
