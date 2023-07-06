@@ -17,7 +17,7 @@ services:
     volumes:
       - couch-data:/opt/couchdb/data
       - couch-log:/opt/couchdb/log
-      - couch-config:/opt/couchdb/etc/local.d
+      # - couch-config:/opt/couchdb/etc/local.d
   
 volumes:
   couch-data:
@@ -34,9 +34,9 @@ volumes:
       device: /c/volume/couchdb/log
       o: bind
 
-  couch-config:
-    driver: local
-    driver_opts: 
-      type: none
-      device: /c/volume/couchdb/config
-      o: bind
+  # couch-config:
+  #   driver: local
+  #   driver_opts: 
+  #     type: none
+  #     device: /c/volume/couchdb/config
+  #     o: bind
