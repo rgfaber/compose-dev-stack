@@ -2,58 +2,58 @@
 
 
 ## CLEAR ALL DATA
-rm -rf /c/volume
+rm -rf /volume
 
 # WIRESHARK
-mkdir -p /c/volume/wireshark/config
+mkdir -p /volume/wireshark/config
 
 # FREEIPA
- mkdir -p /c/volume/freeipa/data
+ mkdir -p /volume/freeipa/data
 
 # REDIS
- mkdir -p /c/volume/redis/data
+ mkdir -p /volume/redis/data
 
 # RABBITMQQ
- mkdir -p /c/volume/rabbitmq/data
- mkdir -p /c/volume/rabbitmq/logs
+ mkdir -p /volume/rabbitmq/data
+ mkdir -p /volume/rabbitmq/logs
 
 # MONGODB
- mkdir -p /c/volume/mongodb/data
+ mkdir -p /volume/mongodb/data
 
 # COUCHDB
- mkdir -p /c/volume/couchdb/log
- mkdir -p /c/volume/couchdb/data
- mkdir -p /c/volume/couchdb/config
+ mkdir -p /volume/couchdb/log
+ mkdir -p /volume/couchdb/data
+ mkdir -p /volume/couchdb/config
 
 # EVENTSTORE
- mkdir -p /c/volume/eventstore/logs
- mkdir -p /c/volume/eventstore/data
- mkdir -p /c/volume/eventstore/index
+ mkdir -p /volume/eventstore/logs
+ mkdir -p /volume/eventstore/data
+ mkdir -p /volume/eventstore/index
 
-#  mkdir -p /c/volume/elastic/data
- mkdir -p /c/volume/elastic/data01
- mkdir -p /c/volume/elastic/data02
- mkdir -p /c/volume/elastic/data03
+#  mkdir -p /volume/elastic/data
+ mkdir -p /volume/elastic/data01
+ mkdir -p /volume/elastic/data02
+ mkdir -p /volume/elastic/data03
 
 # NATS
- mkdir -p /c/volume/nats/stream01
+ mkdir -p /volume/nats/stream01
 
 # POSTGRESQL
- mkdir -p /c/volume/postgres/data
+ mkdir -p /volume/postgres/data
 
 # SPACEDECK
- mkdir -p /c/volume/spacedeck/storage
- mkdir -p /c/volume/spacedeck/db
+ mkdir -p /volume/spacedeck/storage
+ mkdir -p /volume/spacedeck/db
 
 # KAFKA
- mkdir -p /c/volume/kafka/data
+ mkdir -p /volume/kafka/data
 
 # COCKROACHDB
- mkdir -p /c/volume/crdb/data
+ mkdir -p /volume/crdb/data
 
 
-#  chown $USER -R /c/volume/
-#  chown 1001 -R /c/volume/mongodb  # https://hub.docker.com/_/mongo
+#  chown $USER -R /volume/
+#  chown 1001 -R /volume/mongodb  # https://hub.docker.com/_/mongo
 
 
 git submodule update --remote
