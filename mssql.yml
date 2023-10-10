@@ -1,0 +1,19 @@
+version: '3.5'
+
+
+services:
+
+  mssql:
+    image: local/mssql
+    container_name: mssql
+    restart: on-failure
+    networks:
+      - dev-net
+    build:
+      context: ./backend/mssql
+    env_file:
+      - ./backend/mssql/.env
+    pull_policy: always        
+    hostname: mssql
+    ports:
+      - 1433:1433   
