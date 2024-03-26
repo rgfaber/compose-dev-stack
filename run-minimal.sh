@@ -63,9 +63,7 @@ docker-compose -f couchdb.yml \
                -f eventstore.yml \
                -f redis.yml \
                -f rabbitmq.yml \
-               -f jaeger.yml \
                -f postgres.yml \
-               -f wireshark.yml \
                -f networks.yml \
                down
 
@@ -74,9 +72,7 @@ docker-compose -f couchdb.yml \
                -f eventstore.yml \
                -f redis.yml \
                -f rabbitmq.yml \
-               -f jaeger.yml \
                -f postgres.yml \
-               -f wireshark.yml \
                -f networks.yml \
                up --build $1 
 
