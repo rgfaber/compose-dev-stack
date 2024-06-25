@@ -8,7 +8,7 @@ services:
       context: ./backend/postgresql
     container_name: postgres
     env_file:
-      - ./backend/postgresql/app.env
+      - ./backend/postgresql/swai_app.env
     networks:
       - dev-net
     ports:
@@ -20,10 +20,7 @@ volumes:
 
   postgresql-data:
     driver: local
-    driver_opts: 
+    driver_opts:
       type: none
       device: /volume/postgres/data
-      o: bind    
-
-
-  
+      o: bind

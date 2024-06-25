@@ -76,10 +76,12 @@ git submodule update --remote
 #                up --build $1 
 
 docker-compose -f esdb-21.yml \
+               -f postgres.yml \
                -f networks.yml \
                down
 
 docker-compose -f esdb-21.yml \
+               -f postgres.yml \
                -f networks.yml \
                up --build $1 
 
