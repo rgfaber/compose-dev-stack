@@ -8,13 +8,13 @@ services:
       context: ./backend/postgresql
     container_name: postgres
     env_file:
-      - ./backend/postgresql/.env
+      - ./backend/postgresql/app.env
     networks:
       - dev-net
     ports:
       - 5432:5432
     volumes:
-      - postgresql-data:/var/lib/postgresql/data
+      - postgresql-data:/var/lib/postgres/data
 
 volumes:
 
@@ -24,3 +24,6 @@ volumes:
       type: none
       device: /volume/postgres/data
       o: bind    
+
+
+  

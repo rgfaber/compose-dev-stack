@@ -1,19 +1,18 @@
 FROM eventstore/eventstore:24.2.0-bookworm-slim
-# FROM eventstore/eventstore:21.10.7-buster-slim
 # FROM eventstore/eventstore:21.2.0-bionic
 
-# USER root
+USER root
 
 
-# # RUN mkdir -p /usr/local/share/ca-certificates 
+RUN mkdir -p /usr/local/share/ca-certificates 
 
-# # COPY eventstore.csr /usr/local/share/ca-certificates/eventstore.crt 
+# COPY eventstore.csr /usr/local/share/ca-certificates/eventstore.crt 
 
-# # RUN apt-get update -y \
-# #   && update-ca-certificates \
-# #   && apt-get autoremove \
-# #   && apt-get clean \
-# #   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get update -y \
+#   && update-ca-certificates \
+#   && apt-get autoremove \
+#   && apt-get clean \
+#   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 
@@ -37,8 +36,8 @@ FROM eventstore/eventstore:24.2.0-bookworm-slim
 #   && apt-get clean \
 #   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# # RUN printf "ExtIp: 0.0.0.0\n\
-# # IntIp: 0.0.0.0" >> /etc/eventstore/eventstore.conf
+# RUN printf "ExtIp: 0.0.0.0\n\
+# IntIp: 0.0.0.0" >> /etc/eventstore/eventstore.conf
 
 # RUN cat /usr/local/share/ca-certificates/eventstore.crt
 # RUN cat /etc/eventstore/eventstore.pem
@@ -47,10 +46,10 @@ FROM eventstore/eventstore:24.2.0-bookworm-slim
 #   && chmod 600 /etc/eventstore/eventstore.pem 
 
 
-USER eventstore
+# USER eventstore
 
 
-# COPY eventstore.conf /etc/eventstore/eventstore.conf
+COPY eventstore.conf /etc/eventstore/eventstore.conf
 
 VOLUME /var/lib/eventstore /var/log/eventstore
 

@@ -29,6 +29,7 @@ sudo mkdir -p /volume/couchdb/config
 sudo mkdir -p /volume/eventstore/logs
 sudo mkdir -p /volume/eventstore/data
 sudo mkdir -p /volume/eventstore/index
+sudo mkdir -p /volume/eventstore/certs
 
 # sudo mkdir -p /volume/elastic/data
 sudo mkdir -p /volume/elastic/data01
@@ -52,28 +53,41 @@ sudo mkdir -p /volume/kafka/data
 sudo mkdir -p /volume/crdb/data
 
 
-sudo chown $USER -R /volume/
+sudo chown "$USER" -R /volume/
 # sudo chown 1001 -R /volume/mongodb  # https://hub.docker.com/_/mongo
 
 
 git submodule update --remote
 
-docker-compose -f couchdb.yml \
-               -f nats.yml \
-               -f eventstore.yml \
-               -f redis.yml \
-               -f rabbitmq.yml \
-               -f postgres.yml \
+# docker-compose -f couchdb.yml \
+#                -f nats.yml \
+#                -f esdb.yml \
+#                -f redis.yml \
+#                -f rabbitmq.yml \
+#                -f networks.yml \
+#                down
+
+# docker-compose -f couchdb.yml \
+#                -f nats.yml \
+#                -f esdb.yml \
+#                -f redis.yml \
+#                -f rabbitmq.yml \
+#                -f networks.yml \
+#                up --build $1 
+
+docker-compose -f esdb-21.yml \
                -f networks.yml \
                down
 
-docker-compose -f couchdb.yml \
-               -f nats.yml \
-               -f eventstore.yml \
-               -f redis.yml \
-               -f rabbitmq.yml \
-               -f postgres.yml \
+docker-compose -f esdb-21.yml \
                -f networks.yml \
                up --build $1 
 
+
+sleep 2s
+
+sudo cp /volume/eventstore/certs/ca/ca.crt /usr/local/share/ca-certificates/eventstore.crt
+sudo openssl x509 -in /volume/eventstore/certs/ca/ca.crt -out /usr/local/share/ca-certificates/eventstore.pem
+
+sudo update-ca-certificates
 
